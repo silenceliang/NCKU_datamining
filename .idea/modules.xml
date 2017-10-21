@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../TextMining/.idea/TextMining.iml" filepath="$PROJECT_DIR$/../TextMining/.idea/TextMining.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dataMining.iml" filepath="$PROJECT_DIR$/.idea/dataMining.iml" />
+      <module fileurl="file://$USER_HOME$/fierce-reef-10000/.idea/fierce-reef-10000.iml" filepath="$USER_HOME$/fierce-reef-10000/.idea/fierce-reef-10000.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" filepath="$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" />
+    </modules>
+  </component>
+</project>
