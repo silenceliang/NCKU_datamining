@@ -1,8 +1,8 @@
 
-from apyori import apriori
-from AprioriAlgo.file_utills import file_tool
-from AprioriAlgo.parameters import file_name, min_sup,file_name_IBM1
+from file_utills import file_tool
+from parameters import file_name, min_sup,file_name_IBM1
 import time
+import apyori
 '''
 
     python's apriori-Algo implement with apyori.

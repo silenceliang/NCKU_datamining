@@ -62,10 +62,11 @@ class file_tool(object):
         dict = {}
         for key, value in self.dict.items():
             for string in value:
-                dict.setdefault(string, []).append(key)
+                dict.setdefault(frozenset([string]), []).append(key)
 
         return dict
 
+    ''' 用來轉成weka格式 '''
     def build_csv(self):
 
         cab = list(self.unique)
@@ -89,4 +90,4 @@ class file_tool(object):
         for i in range(0, length):
             df.loc[i] = big_list[i]
 
-        df.to_csv('feed_weka.csv', sep=',', encoding='utf-8', index=False)
+        df.to_csv('feed_weka195.csv', sep=',', encoding='utf-8', index=False)
