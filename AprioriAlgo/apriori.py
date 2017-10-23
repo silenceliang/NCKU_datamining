@@ -47,11 +47,13 @@ def apriori(D, min_sup):
 
                 #  in case of new set contain duplicated set
                 if len(before_duplicate_set) > 0:
-                    if i.difference(j).issubset(before_duplicate_set) | \
-                            len(i.difference(j).intersection(j.difference(i))) == 0:
+                    if i.union(j).difference(i.intersection(j)) in before_duplicate_set:
                         continue
 
                 key = i | j
+                if len(key) > len(i) + 1:
+                    continue
+
                 temp_value = return_dict[i] & return_dict[j]
 
                 before_counts = len(return_dict[i])
