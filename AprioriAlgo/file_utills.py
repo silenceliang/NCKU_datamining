@@ -66,7 +66,7 @@ class file_tool(object):
 
         return dict
 
-    ''' 用來轉成weka格式 '''
+    ''' 用來轉成weka .csv格式 '''
     def build_csv(self):
 
         cab = list(self.unique)

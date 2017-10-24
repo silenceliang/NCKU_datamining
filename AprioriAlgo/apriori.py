@@ -65,7 +65,9 @@ def apriori(D, min_sup):
                 if support_ratio < min_sup:
                     duplicate_set.add(key)
                 else:
+                    #conf_dict[i] = support_ratio
                     ans_dict[key] = support_ratio
+
                     # show the count, support, conf.
                     # print(key, ' :', current_counts, (support_ratio, confidence_ratio))
                     # show the tid of every item be count.
@@ -81,11 +83,12 @@ def apriori(D, min_sup):
 
 def main():
 
-    global ans_dict ,file_len # global variable
+    global ans_dict ,file_len#, conf_dict      ## global variable
     ans_dict = {}
+    #conf_dict = {}
 
     '''
-        use in terminal
+    use in terminal
     try:
         INPUT, _ = getopt.getopt(sys.argv[1:], "i:m:")
         file, min_sup = INPUT
@@ -104,8 +107,8 @@ def main():
         sys.exit(2)
 
     '''
+    '''
 
-    '''  
     # for kaggle dataSet:
 
     f = file_tool(file_name,  header=True)
@@ -121,10 +124,13 @@ def main():
     for i in sorted(ans.items(), key=lambda d: d[1], reverse=True):
         print(i)
 
+    #for j in sorted(conf_dict.items(), key=lambda d: d[1], reverse=True):
+    #    print(j)
     '''
+
 # for IBM dataSet:
 
-    f = file_tool(file_name_IBM, False)
+    f = file_tool(file_name_IBM1, False)
     file_len = len(f.csv_file)
     init_Dict = f.item_id_dict()
     #f.build_csv()

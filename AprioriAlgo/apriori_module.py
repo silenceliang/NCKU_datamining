@@ -6,6 +6,7 @@ import apyori
 '''
 
     python's apriori-Algo implement with apyori.
+    it won't be work if you haven't installed this module by command 'pip install apyori'.
 
 '''
 
