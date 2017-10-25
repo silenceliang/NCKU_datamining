@@ -107,8 +107,8 @@ def main():
         sys.exit(2)
 
     '''
-    '''
 
+    '''
     # for kaggle dataSet:
 
     f = file_tool(file_name,  header=True)

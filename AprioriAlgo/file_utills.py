@@ -29,7 +29,7 @@ class file_tool(object):
                 for x in self.csv_file.iloc[i]:
                     if not str(x) == 'nan':
                         self.unique = self.unique | {str(x)}
-                        temp.append(x)
+                        temp.append(frozenset([x]))
                 self.dict[i] = temp
 
             self.rev_dict = self.item_id_dict()
@@ -62,7 +62,7 @@ class file_tool(object):
         dict = {}
         for key, value in self.dict.items():
             for string in value:
-                dict.setdefault(frozenset([string]), []).append(key)
+                dict.setdefault(string, []).append(key)
 
         return dict
 
