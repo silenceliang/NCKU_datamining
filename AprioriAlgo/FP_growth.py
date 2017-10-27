@@ -27,21 +27,19 @@ class Node(object):
                 child.find(item)
         return None
 
-
-
-
 def sortListByfrequency(item_list, freq_dict):
 
     freq_list = [freq_dict[x] for x in item_list]
     return [x for _, x in sorted(zip(freq_list, item_list), reverse=True)]
 
-def pattern_combine(patern_list):
+def pattern_construct(pattern_list):
     d = {}
-    for NodeSet in patern_list:
+    for NodeSet in pattern_list:
         for x in NodeSet:
             if x not in d: d[x] = 1
             else: d[x] += 1
-    print(d)
+    for i,j in d.items():
+        print(i.label ,j)
 
 
 def main():
@@ -51,6 +49,8 @@ def main():
     transaction = f.dict
     init_Dict = f.item_id_dict()
     NodeTable = {}
+    label_Node = {}
+
 
     # {word} --> frequency(int)
     for i in list(init_Dict):  # item : freq
@@ -73,7 +73,7 @@ def main():
         path = []
         for item in item_list:
             stop_Node = current_Node.find(item)
-
+            '''ever show'''
             if stop_Node:
                 stop_Node.inc(1)
                 next_Node = stop_Node
@@ -84,27 +84,37 @@ def main():
                 current_Node.child[item] = next_Node
 
             current_Node = next_Node
-
+            ''' root not be stored in path'''
             if next_Node.parent.label != 'root':
                 path.append(next_Node.parent)
-
+            '''Node first appear'''
             if next_Node.label not in NodeTable:
                 NodeTable[next_Node.label] = set()
+                label_Node[next_Node.label] = set()
 
             NodeTable[next_Node.label].add(frozenset(path))
+            label_Node[next_Node.label].add(next_Node)
 
+    '''NodeTable store pattern path
+    as Node --> [] path_List '''
 
     for key, pat_list in NodeTable.items():
         print('item:', key)
         print("*****")
-        # pattern_combine(pat_list)
 
         for i in pat_list:
             for x in i:
                 print('pattern: ', x.label, x.count)
-        print(".....")
+            print(".....")
         print("-------------------")
     rootNode.disp()
+
+    ''' Extract suffix patterns of paths to the item i
+ Construct its Conditional Pattern Base '''
+
+    for i in freq_List:
+        current_Node = label_Node[i[0]]  # = contains all sub-Node
+
 
 
     print('\nInstance: %d\nAttribute: %d\n------------------' % (file_len, len(list(init_Dict))))
