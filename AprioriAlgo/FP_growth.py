@@ -27,20 +27,19 @@ class Node(object):
                 child.find(item)
         return None
 
+
 def sortListByfrequency(item_list, freq_dict):
 
     freq_list = [freq_dict[x] for x in item_list]
     return [x for _, x in sorted(zip(freq_list, item_list), reverse=True)]
 
-def pattern_construct(pattern_list):
-    d = {}
-    for NodeSet in pattern_list:
-        for x in NodeSet:
-            if x not in d: d[x] = 1
-            else: d[x] += 1
-    for i,j in d.items():
-        print(i.label ,j)
 
+def countSychroz(node, count, dic):
+    if node.label != 'root':
+        dic[node.label] = count
+        if node.parent:
+            countSychroz(node.parent, count, dic)
+            return dic
 
 def main():
 
@@ -83,10 +82,9 @@ def main():
                 next_Node.parent = current_Node
                 current_Node.child[item] = next_Node
 
+            path.append(next_Node)
             current_Node = next_Node
-            ''' root not be stored in path'''
-            if next_Node.parent.label != 'root':
-                path.append(next_Node.parent)
+
             '''Node first appear'''
             if next_Node.label not in NodeTable:
                 NodeTable[next_Node.label] = set()
@@ -112,12 +110,17 @@ def main():
     ''' Extract suffix patterns of paths to the item i
  Construct its Conditional Pattern Base '''
 
-    for i in freq_List:
-        current_Node = label_Node[i[0]]  # = contains all sub-Node
+    for i in freq_List:  # label --> frequency
+        current_NodeSet = label_Node[i[0]]  # = contains all sub-Node
+        for node in current_NodeSet:
+            print(node.label)
+            d = {}
+            d = countSychroz(node.parent, node.count, d)
+            print(d)
 
 
 
-    print('\nInstance: %d\nAttribute: %d\n------------------' % (file_len, len(list(init_Dict))))
+    #print('\nInstance: %d\nAttribute: %d\n------------------' % (file_len, len(list(init_Dict))))
 
 
 if __name__ == '__main__':
