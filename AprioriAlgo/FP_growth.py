@@ -41,23 +41,34 @@ def countSychroz(node, count, dic):
             countSychroz(node.parent, count, dic)
 
 def sub_path(node, count):
+
     list = []
-    while node.label != 'root':
-        node.count = count
-        list.append(node.label)
-        node = node.parent
+    if node:
+        while node.label != 'root':
+            node.count = count
+            list.append(tuple([node.label, node.count]))
+            node = node.parent
+
     return list[::-1]
 
 
 
-def build_FP(d):
-    root = Node('null', None, None)
-    for node in d.keys():
-        if node.parent.label == 'root':
-            root.child[node.label] = node
-            node.parent = root
+def build_FP(root, path):
+    current_Node = root
 
-    root.disp()
+    for item in path:
+        stop_Node = current_Node.find(item[0])
+        '''ever show'''
+        if stop_Node:
+            stop_Node.inc(1)
+            next_Node = stop_Node
+
+        else:
+            next_Node = Node(item[0], item[1], current_Node)
+            next_Node.parent = current_Node
+            current_Node.child[item[0]] = next_Node
+
+        current_Node = next_Node
 
 
 def main():
@@ -129,13 +140,15 @@ def main():
 
     for i in freq_List:  # label --> frequency
         current_NodeSet = label_Node[i[0]]  # = contains all sub-Node
-
         print('\n', i[0])
+
+        root = Node('null', None, None)
         for node in current_NodeSet:
+            path = sub_path(node.parent, node.count)
+            print(node.label, path)
+            build_FP(root, path)
 
-            l = sub_path(node.parent, node.count)
-            print(l)
-
+        root.disp()  # show sub-tree
 
 if __name__ == '__main__':
     main()
