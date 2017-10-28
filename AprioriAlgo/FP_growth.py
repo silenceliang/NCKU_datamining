@@ -1,6 +1,6 @@
 from file_utills import file_tool
 from parameters import file_name, min_sup, file_name_IBM, file_name_IBM1
-from collections import defaultdict
+from collections import Counter
 
 class Node(object):
 
@@ -36,20 +36,37 @@ def sortListByfrequency(item_list, freq_dict):
 
 def countSychroz(node, count, dic):
     if node.label != 'root':
-        dic[node.label] = count
+        dic[node] = count
         if node.parent:
             countSychroz(node.parent, count, dic)
-            return dic
+
+def sub_path(node, count):
+    list = []
+    while node.label != 'root':
+        node.count = count
+        list.append(node.label)
+        node = node.parent
+    return list[::-1]
+
+
+
+def build_FP(d):
+    root = Node('null', None, None)
+    for node in d.keys():
+        if node.parent.label == 'root':
+            root.child[node.label] = node
+            node.parent = root
+
+    root.disp()
+
 
 def main():
 
     f = file_tool('data/Te.csv', False)
-    file_len = len(f.csv_file)
     transaction = f.dict
     init_Dict = f.item_id_dict()
     NodeTable = {}
     label_Node = {}
-
 
     # {word} --> frequency(int)
     for i in list(init_Dict):  # item : freq
@@ -90,7 +107,7 @@ def main():
                 NodeTable[next_Node.label] = set()
                 label_Node[next_Node.label] = set()
 
-            NodeTable[next_Node.label].add(frozenset(path))
+            NodeTable[next_Node.label].add(tuple(path))
             label_Node[next_Node.label].add(next_Node)
 
     '''NodeTable store pattern path
@@ -99,7 +116,7 @@ def main():
     for key, pat_list in NodeTable.items():
         print('item:', key)
         print("*****")
-
+        print(pat_list)
         for i in pat_list:
             for x in i:
                 print('pattern: ', x.label, x.count)
@@ -112,15 +129,12 @@ def main():
 
     for i in freq_List:  # label --> frequency
         current_NodeSet = label_Node[i[0]]  # = contains all sub-Node
+
+        print('\n', i[0])
         for node in current_NodeSet:
-            print(node.label)
-            d = {}
-            d = countSychroz(node.parent, node.count, d)
-            print(d)
 
-
-
-    #print('\nInstance: %d\nAttribute: %d\n------------------' % (file_len, len(list(init_Dict))))
+            l = sub_path(node.parent, node.count)
+            print(l)
 
 
 if __name__ == '__main__':
