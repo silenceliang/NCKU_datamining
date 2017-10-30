@@ -12,5 +12,5 @@ file_name_IBM = 'data/IBM_data.csv'  # small
 file_name_IBM1 = 'data/IBM_data1.csv'  # large
 
 ''' min_support ratio '''
-min_sup = 0.0005
+min_sup = 0.4
 

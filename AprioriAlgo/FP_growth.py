@@ -89,7 +89,7 @@ def obtain_Pattern(root, minsup, label):
                 else:
                     F_dict[frozenset([label, node.label])] = node.count
 
-                node.filter(min_sup, label, [label, node.label], F_dict)
+                node.filter(minsup, label, [label, node.label], F_dict)
 
     return F_dict
 
@@ -97,7 +97,7 @@ def obtain_Pattern(root, minsup, label):
 def main():
     global file_len
 
-    f = file_tool(file_name_IBM1, False)
+    f = file_tool('data/FP_example.csv', False)
     file_len = len(f.csv_file)
     min_sup_n = min_sup * file_len
 
@@ -168,7 +168,7 @@ def main():
             #print(node.label, path)
             build_FP(root, path)
 
-        # root.disp()  # show sub-tree
+        #root.disp()  # show sub-tree
 
         final_dict = obtain_Pattern(root, min_sup_n, label)
 
