@@ -10,13 +10,13 @@ class Node(object):
         self.parent = parent
         self.child = {}
 
-    def inc(self, count):
+    def add_count(self, count):
         self.count += count
 
-    def disp(self, ind=1):
+    def show(self, ind=1):
         print('  ' * ind, self.label, ' ', self.count)
         for child in self.child.values():
-            child.disp(ind + 1)
+            child.show(ind + 1)
 
     def find(self, item):
 
@@ -64,7 +64,7 @@ def build_FP(root, path):
         stop_Node = current_Node.find(item[0])
         '''ever show'''
         if stop_Node:
-            stop_Node.inc(stop_Node.count)
+            stop_Node.add_count(stop_Node.count)
             next_Node = stop_Node
 
         else:
@@ -89,13 +89,23 @@ def obtain_Pattern(root, minsup, label):
                 else:
                     F_dict[frozenset([label, node.label])] = node.count
 
-                node.filter(min_sup, label, [label, node.label], F_dict)
+                node.filter(minsup, label, [label, node.label], F_dict)
 
     return F_dict
 
 
 def main():
     global file_len
+
+    '''
+     for kaggle dataSet:
+     
+        f = file_tool(file_name,  header=True)
+        file_len = len(f.csv_file)
+        init_Dict = f.item_id_dict()
+        for i in init_Dict:
+            init_Dict[i] = frozenset(init_Dict[i]) 
+    '''
 
     f = file_tool(file_name_IBM1, False)
     file_len = len(f.csv_file)
@@ -132,7 +142,7 @@ def main():
             stop_Node = current_Node.find(item)
             '''ever show'''
             if stop_Node:
-                stop_Node.inc(1)
+                stop_Node.add_count(1)
                 next_Node = stop_Node
 
             else:
@@ -151,9 +161,9 @@ def main():
             NodeTable[next_Node.label].add(tuple(path))
             label_Node[next_Node.label].add(next_Node)
 
-    #rootNode.disp()
+    #rootNode.show()
 
-    all_pattern = []
+    ans_dict = {}
 
     ''' Extract suffix patterns of paths to the item i
  Construct its Conditional Pattern Base '''
@@ -168,18 +178,24 @@ def main():
             #print(node.label, path)
             build_FP(root, path)
 
-        # root.disp()  # show sub-tree
+        # root.show()  # show sub-tree
 
         final_dict = obtain_Pattern(root, min_sup_n, label)
+        ans_dict.update(final_dict)
 
-        for x, j in final_dict.items():
-            print(x, j)
+        ''' add unit '''
+        ans_dict[frozenset([label])] = i[1]
+
+        #for x, j in final_dict.items():
+        #    print(x, j)
+
+    for i, j in ans_dict.items():
+        print(i, j)
 
     tEnd = time.time()
     print('%fs' % (tEnd - tStart))
 
 
 if __name__ == '__main__':
-
     main()
 
