@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CRF_seg/.idea/CRF_seg.iml" filepath="$PROJECT_DIR$/../CRF_seg/.idea/CRF_seg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NCKU_chatbot/.idea/NCKU_chatbot.iml" filepath="$PROJECT_DIR$/../NCKU_chatbot/.idea/NCKU_chatbot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../OpenCv_Hw1/.idea/OpenCv_Hw1.iml" filepath="$PROJECT_DIR$/../OpenCv_Hw1/.idea/OpenCv_Hw1.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TextMining/.idea/TextMining.iml" filepath="$PROJECT_DIR$/../TextMining/.idea/TextMining.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dataMining.iml" filepath="$PROJECT_DIR$/.idea/dataMining.iml" />
       <module fileurl="file://$USER_HOME$/fierce-reef-10000/.idea/fierce-reef-10000.iml" filepath="$USER_HOME$/fierce-reef-10000/.idea/fierce-reef-10000.iml" />
       <module fileurl="file://$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" filepath="$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" filepath="$PROJECT_DIR$/../fund_project/.idea/fund_project.iml" />
+      <module fileurl="file://$USER_HOME$/pyseg-master/.idea/pyseg-master.iml" filepath="$USER_HOME$/pyseg-master/.idea/pyseg-master.iml" />
     </modules>
   </component>
 </project>

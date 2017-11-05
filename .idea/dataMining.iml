@@ -7,5 +7,11 @@
     <orderEntry type="module" module-name="fund_project" />
     <orderEntry type="module" module-name="TextMining" />
     <orderEntry type="module" module-name="fierce-reef-10000" />
+    <orderEntry type="module" module-name="CRF_seg" />
+    <orderEntry type="module" module-name="pyseg-master" />
+    <orderEntry type="module" module-name="CRF_seg" />
+    <orderEntry type="module" module-name="NCKU_chatbot" />
+    <orderEntry type="module" module-name="OpenCv_Hw1" />
+    <orderEntry type="module" module-name="fund_project" />
   </component>
 </module>

@@ -7,11 +7,12 @@ import apyori
 
     python's apriori-Algo implement with apyori.
     it won't be work if you haven't installed this module by command 'pip install apyori'.
+    here be evaluate performance.
 
 '''
 
 #f = file_tool(file_name_IBM3, header=True)
-f = file_tool(file_name_IBM1, header=None)
+f = file_tool(file_name, header=None)
 
 lis = []
 

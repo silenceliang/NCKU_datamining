@@ -97,7 +97,7 @@ def obtain_Pattern(root, minsup, label):
 def main():
     global file_len
 
-    f = file_tool('data/FP_example.csv', False)
+    f = file_tool(file_name, True)
     file_len = len(f.csv_file)
     min_sup_n = min_sup * file_len
 
