@@ -34,9 +34,6 @@ class file_tool(object):
 
             self.rev_dict = self.item_id_dict()
 
-        ''' create dict.'''
-        #self.dict = self.id_item_dict()
-        #self.rev_dict = self.item_id_dict()
 
     def get_CSV_col(self, attr_col):
         re_list = []
@@ -51,7 +48,7 @@ class file_tool(object):
         for n, id in enumerate(self.id):
             item_list = []
             for i in range(0, len(self.items)):
-                item_list.append(self.items[i][n])
+                item_list.append(frozenset([self.items[i][n]]))
 
             dict[id] = item_list
 

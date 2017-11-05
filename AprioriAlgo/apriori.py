@@ -83,10 +83,9 @@ def apriori(D, min_sup):
 
 def main():
 
-    global ans_dict ,file_len#, conf_dict      ## global variable
+    global ans_dict ,file_len #, conf_dict      ## global variable
     ans_dict = {}
     #conf_dict = {}
-
     '''
     use in terminal
     try:
@@ -105,32 +104,9 @@ def main():
         print(str(e))
         print("Usage: %s -i input_.csv -m min_sup[0,1]" % sys.argv[0])
         sys.exit(2)
-
     '''
 
-    '''
-    # for kaggle dataSet:
-
-    f = file_tool(file_name,  header=True)
-    file_len = len(f.csv_file)
-    init_Dict = f.item_id_dict()
-    for i in init_Dict:
-        init_Dict[i] = frozenset(init_Dict[i])
-
-    tStart = time.time()
-    ans = apriori(init_Dict, min_sup=min_sup)
-    tEnd = time.time()
-    print('%fs' % (tEnd - tStart))
-    for i in sorted(ans.items(), key=lambda d: d[1], reverse=True):
-        print(i)
-
-    #for j in sorted(conf_dict.items(), key=lambda d: d[1], reverse=True):
-    #    print(j)
-    '''
-
-# for IBM dataSet:
-
-    f = file_tool(file_name_IBM1, False)
+    f = file_tool(file_name, True)
     file_len = len(f.csv_file)
     init_Dict = f.item_id_dict()
     #f.build_csv()
