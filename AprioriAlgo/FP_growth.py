@@ -93,7 +93,6 @@ def obtain_Pattern(root, minsup, label):
 
     return F_dict
 
-
 def main():
     global file_len
 

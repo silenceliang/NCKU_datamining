@@ -32,10 +32,10 @@ def apriori(D, min_sup):
     temp_dict = find_seq_1_itemsets(D, min_sup)
     return_dict = temp_dict
     before_duplicate_set = set()  # the last be pruned
+    c = 0
 
     while any(return_dict):
-
-        print('Size of set of large itemsets: %d' % len(list(return_dict)))
+        print('Size of set of large itemsets(%d): %d' % (c, len(list(return_dict))))
         return_dict_tmp = {}  # every time I go to another table
         re_key_set = set(return_dict)
         candidate_set = re_key_set
@@ -65,9 +65,9 @@ def apriori(D, min_sup):
                 if support_ratio < min_sup:
                     duplicate_set.add(key)
                 else:
-                    #conf_dict[i] = support_ratio
+                    s = "%s => %s" % (str(i),str(j))
+                    conf_dict[s] = confidence_ratio
                     ans_dict[key] = support_ratio
-
                     # show the count, support, conf.
                     # print(key, ' :', current_counts, (support_ratio, confidence_ratio))
                     # show the tid of every item be count.
@@ -77,15 +77,16 @@ def apriori(D, min_sup):
         # start from (x,y) to duplicate
         before_duplicate_set = duplicate_set
         return_dict = return_dict_tmp
+        c+= 1
 
-    return ans_dict
+    return ans_dict, conf_dict
 
 
 def main():
 
-    global ans_dict ,file_len #, conf_dict      ## global variable
+    global ans_dict ,file_len , conf_dict     # global variable
     ans_dict = {}
-    #conf_dict = {}
+    conf_dict = {}
     '''
     use in terminal
     try:
@@ -113,12 +114,19 @@ def main():
     for i in init_Dict:
         init_Dict[i] = frozenset(init_Dict[i])
 
-    print('\nInstance: %d\nAttribute: %d\n------------------' % (file_len, len(list(init_Dict))))
+    print('min_sup: %f\nInstance: %d\nAttribute: %d\n------------------' % (min_sup, file_len, len(list(init_Dict))))
 
     tStart = time.time()
-    apriori(init_Dict, min_sup=min_sup)
+    sup, conf = apriori(init_Dict, min_sup=min_sup)
     tEnd = time.time()
-    print('%fs' % (tEnd - tStart))
+    print('waste time : %fs' % (tEnd - tStart))
+    print("--------------------\nrule : ")
+    for k, v in conf.items():
+        print(k, v)
+    print("--------------------\nsupport : ")
+
+    for k, v in sup.items():
+        print(k, v)
 
 
 if __name__ == '__main__':
