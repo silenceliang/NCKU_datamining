@@ -1,5 +1,11 @@
 # NCKU_datamining
 
+
+## report
+
+* Hackmd : https://hackmd.io/MYQwbGAmBGCmCcBaadqICwEYBMBWR8kAzJhugOzRi4AM8mRIIQA=?both
+
+
 ## details
 
 ---
@@ -25,7 +31,3 @@
   parameter.2  boolean : header = None / True 
 
 ---
-
-## report
-
-* Hackmd : https://hackmd.io/MYQwbGAmBGCmCcBaadqICwEYBMBWR8kAzJhugOzRi4AM8mRIIQA=?both
