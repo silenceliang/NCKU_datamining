@@ -1,4 +1,4 @@
-# NCKU_datamining
+# AprioriAlgo
 
 
 ## report
